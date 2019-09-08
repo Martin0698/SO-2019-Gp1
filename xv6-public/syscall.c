@@ -1,3 +1,4 @@
+
 #include "types.h"
 #include "defs.h"
 #include "param.h"
@@ -7,6 +8,8 @@
 #include "x86.h"
 #include "syscall.h"
 
+
+
 // User code makes a system call with INT T_SYSCALL.
 // System call number in %eax.
 // Arguments on the stack, from the user call to the C
@@ -14,6 +17,16 @@
 // to a saved program counter, and then the first argument.
 
 // Fetch the int at addr from the current process.
+
+//Arreglo instanciado en la clase
+char *funciones[23]={"FORK", "EXIT", "WAIT",
+ "PIPE","READ", "KILL", "EXEC", "FSTAT", "CHDIR",
+ "DUP", "GETPID", "SBRK", "SLEEP", "UPTIME", "OPEN",
+ "WRITE", "MKNOD", "UNLINK", "LINK", "MKDIR", "CLOSE",
+ "SHUTDOWN", "REBOOT"};
+
+
+
 int
 fetchint(uint addr, int *ip)
 {
@@ -138,9 +151,16 @@ syscall(void)
   int num;
   struct proc *curproc = myproc();
 
+
+
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
+      //Imprime las funciones que se utilizan
+    cprintf("\n %s = %d ", funciones[num] ,num);
+
     curproc->tf->eax = syscalls[num]();
+
+
   } else {
     cprintf("%d %s: unknown sys call %d\n",
             curproc->pid, curproc->name, num);
