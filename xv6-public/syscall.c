@@ -19,11 +19,11 @@
 // Fetch the int at addr from the current process.
 
 //Arreglo instanciado en la clase
-char *funciones[23]={"FORK", "EXIT", "WAIT",
+/*char *funciones[23]={"FORK", "EXIT", "WAIT",
  "PIPE","READ", "KILL", "EXEC", "FSTAT", "CHDIR",
  "DUP", "GETPID", "SBRK", "SLEEP", "UPTIME", "OPEN",
  "WRITE", "MKNOD", "UNLINK", "LINK", "MKDIR", "CLOSE",
- "SHUTDOWN", "REBOOT"};
+ "SHUTDOWN", "REBOOT"};*/
 
 
 
@@ -156,7 +156,7 @@ syscall(void)
   num = curproc->tf->eax;
   if(num > 0 && num < NELEM(syscalls) && syscalls[num]) {
       //Imprime las funciones que se utilizan
-    cprintf("\n %s = %d ", funciones[num] ,num);
+    //cprintf("\n %s = %d ", funciones[num] ,num);
 
     curproc->tf->eax = syscalls[num]();
 
