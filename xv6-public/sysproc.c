@@ -57,9 +57,9 @@ sys_sbrk(void)
 }
 
 int
-sys_sleep(void)
+sys_sleep( int num)
 {
-  int n;
+  int n=num;
   uint ticks0;
 
   if(argint(0, &n) < 0)
