@@ -1,18 +1,22 @@
 #include "types.h"
+#include "stat.h"
 #include "user.h"
 
-int main(int argc, char *argv[]) {
-	int sleep_sec;
-	if (argc < 2){
-		printf(2, "Usage: sleep seconds\n");
-		exit();
-	}
+int main(int argc, char **argv){
+    int time;
 
-	sleep_sec = atoi(argv[1]);
-	if (sleep_sec > 0){
-		sleep(sleep_sec);
-	} else {
-		printf(2, "Invalid interval %s\n", argv[1]);
-	}
-	exit();
+    if(argc<2){
+        printf(2,"Sleeping \n");
+        exit();
+    }
+
+    time = atoi(argv[1]);
+
+    if(time>0){
+        sleep(time*100);
+    } else {
+        printf(2, "Error %s\n", argv[1]);
+    }
+
+    exit();
 }

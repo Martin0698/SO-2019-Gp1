@@ -185,6 +185,8 @@ UPROGS=\
     _reboot\
 	_sleep\
 
+	//sleep
+
 fs.img: mkfs README $(UPROGS)
 	./mkfs fs.img README $(UPROGS)
 
